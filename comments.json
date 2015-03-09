@@ -2,5 +2,13 @@
     {
         "author": "Pete Hunt",
         "text": "Hey there!"
+    },
+    {
+        "author": "Jake Smith",
+        "text": "Hello there, Pete!"
+    },
+    {
+        "author": "Jake Smith",
+        "text": "Actually, forget I asked"
     }
 ]
