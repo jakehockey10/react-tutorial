@@ -1,16 +1,79 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Hello React</title>
     <!-- Not present in the tutorial. Just for basic styling. -->
-    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/base.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.12.2/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.12.2/JSXTransformer.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js"></script>
-  </head>
-  <body>
-    <div id="content"></div>
-    <script type="text/jsx;harmony=true" src="scripts/example.js"></script>
-  </body>
+</head>
+<body>
+<div id="content"></div>
+<!--<script type="text/jsx;harmony=true" src="scripts/example.js"></script>-->
+<script type="text/jsx;harmony=true">
+        var CommentBox = React.createClass({
+            render: function() {
+                return (
+                    <div className="commentBox">
+                        <h1>Comments</h1>
+                        <CommentList />
+                        <CommentForm />
+                    </div>
+                );
+            }
+        });
+
+        var CommentList = React.createClass({
+            render: function() {
+                return (
+                    <div className="commentList">
+                        <Comment author="Pete Hunt">This is one comment</Comment>
+                        <Comment author="Jordan Walke">This is *another* comment</Comment>
+                    </div>
+                );
+            }
+        });
+
+        var CommentForm = React.createClass({
+            render: function() {
+                return (
+                    <div className="commentForm">
+                        Hello, world! I am a CommentForm.
+                    </div>
+                );
+            }
+        });
+
+        // tutorial7.js
+        var converter = new Showdown.converter();
+        var Comment = React.createClass({
+          render: function() {
+            var rawMarkup = converter.makeHtml(this.props.children.toString());
+            return (
+              <div className="comment">
+                <h2 className="commentAuthor">
+                  {this.props.author}
+                </h2>
+                <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
+              </div>
+            );
+          }
+        });// Remember: by using this feature you're relying on Showdown to be secure.
+
+        React.render(
+          <CommentBox />,
+          document.getElementById('content')
+        )
+
+        // tutorial8.js
+        var data = [
+          {author: "Pete Hunt", text: "This is one comment"},
+          {author: "Jordan Walke", text: "This is *another* comment"}
+        ];
+
+
+</script>
+</body>
 </html>
