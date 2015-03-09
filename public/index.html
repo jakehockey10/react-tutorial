@@ -19,7 +19,7 @@
           {author: "Jordan Walke", text: "This is *another* comment"}
         ];
 
-        // tutorial19.js
+        // tutorial20.js
         var CommentBox = React.createClass({
           loadCommentsFromServer: function() {
             $.ajax({
@@ -34,6 +34,9 @@
             });
           },
           handleCommentSubmit: function(comment) {
+            var comments = this.state.data;
+            var newComments = comments.concat([comment]);
+            this.setState({data: newComments});
             $.ajax({
               url: this.props.url,
               dataType: 'json',
