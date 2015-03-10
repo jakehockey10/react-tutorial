@@ -18,20 +18,19 @@ var Comment = React.createClass({
 ```
 ### Q1: Where does the value of ``this.props.author`` get specified?
 
-{{ your answer here }}
+{{ this.props.author is specified in the declaration of commentNodes.  Author is an attribute of the HTML like node in the render function of CommentList }}
 
 ### Q2: Where does the value of ``this.props.children`` get specified?
 
-{{ your answer here }}
-
+{{ this.props.children consists of all the child elements of the comments that are passed into CommentList }}
 
 ### Q3: What does ``className="comment"`` do?
 
-{{ your answer here }}
+{{ this gives the rendered HTML element a class attribute with value 'comment' }}
 
 ### Q4: What is ``dangerouslySetInnerHTML``? Why is it such a long word for an API method?
 
-{{ your answer here }}
+{{ dangerouslySetInnerHTML allows for React to ignore the danger of an XSS attack and allow HTML to be rendered using Showdown. }}
 
 # CommentBox
 ```javascript
@@ -53,20 +52,19 @@ var CommentBox = React.createClass({
 
 ### Q5: How does ``$`` get defined? Is it part of the ReactJS framework?
 
-{{your answer here}}
+{{ The '$' comes from JQuery.  It is not a part of the ReactJS framework. }}
 
 ### Q6: Where does the value of ``this.props.url`` get specified?
 
-{{your answer here}}
-
+{{ this.props.url is specified in our call to React.render.  We specify our CommentBox to have a url property with value 'comments.json'. }}
 
 ### Q7: What would happen to the statement ``this.setState`` if ``bind(this)`` is removed? Why?
 
-{{your answer here}}
+{{ Without bind(this), this.setState would refer to the setState property of the wrong object (in this case $). }}
 
 ### Q8: Who calls ``loadCommentsFromServer``? When? 
 
-{{your answer here}}
+{{ The componentDidMount property function of CommentBox calls loadCommentsFromServer once upon load and then we set an interval to call this method on a regular basis. }}
 
 
 ```javascript
@@ -113,26 +111,23 @@ var CommentBox = React.createClass({
 
 ### Q9: What is the purpose of ``this.state``? How is this different from ``this.props``?
 
-{{your answer here}}
+{{ this.state is the state of a particular component.  this.props is immutable and owned by the parent, whereas this.state is mutable and is private to its component.  It is set with this.setState. }}
 
 ### Q10: What is the initial value of ``this.state.data``? How is the initial value specified?
 
-{{your answer here}}
-
+{{ this.state.data is initialized in the getInitialState property function.  This function is called exactly once during the lifecycle of the component. }}
 
 ### Q11: What is the new value of ``this.state.data``? How is this new value set?
 
-{{your answer here}}
-
+{{ React automatically calls componentDidMount once the component is rendered.  This, in turn, calls loadCommentsFromServer }}
 
 ### Q12: What is the purpose of ``componentDidMount`` callback?
 
-{{your answer here}}
+{{ React automatically calls this property function once the component is rendered. }}
 
 ### Q13: What is the purpose of ``getInitialState``?
 
-{{your answer here}}
-
+{{ getInitialState is called once during the lifecycle of a component is initializes the state of the component. }}
 
 # CommentList
 
@@ -160,15 +155,15 @@ var CommentList = React.createClass({
 ```
 ### Q14: How does the value of ``this.props.data`` get set?
 
-{{your answer here}}
+{{ this.props is passed from parent to child, so this.props.data is set in CommentBox, the parent of CommentList. }}
 
 ### Q15: What is the value of ``commentNodes``?
 
-{{your answer here}}
+{{ commentNodes is a variable defined by the result of calling the map function on this.props.data and creating a Comment component for each element in this.props.data. }}
 
 ### Q16: Where does the value of ``{comment.text}`` go on the rendered page?
 
-{{your answer here}}
+{{ comment.text is the text part of a comment in the json data, and will go inside the component/dom element. }}
 
 # CommentForm
 ```javascript
@@ -204,16 +199,16 @@ React.render(
 
 ### Q17: What is the purpose of ``e.preventDefault()``?
 
-{{answer here}}
+{{ e.preventDefault() prevents the browser from reacting to a submission the way it is expected to by default.  We are basically telling it to let us handle form submission. }}
 
 ### Q18: What is the value of ``this.props.onCommentSubmit``? What does it get specified?
 
-{{answer here}}
+{{ this.props.onCommentSubmit is bound to the handleCommentSubmit property function of the CommentBox component. }}
 
 ### Q19: Where does ``this.refs.author`` point to?
 
-{{answer here}}
+{{ this.refs points to the component, so this.refs.author refers to the components author property/attribute }}
 
 ### Q20: What does ``getDOMNode()`` do?
 
-{{answer here}}
+{{ getDOMNode returns the DOM element that is the component you are calling this method on. }}
